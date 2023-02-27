@@ -17,9 +17,20 @@ public class Lecture9
     // Recursive function to check if a given binary tree is height-balanced or not
     public static int isHeightBalanced(Node root, AtomicBoolean isBalanced)
     {
-        //TODO
+        if(root==null){
+            return -1;
+        }
+        int height;
+        int leftHeight=isHeightBalanced(root.left,isBalanced);
+        int rightHeight=isHeightBalanced(root.right,isBalanced);
 
-        return -1;
+        if(leftHeight-rightHeight>1 || rightHeight-leftHeight>1){
+            isBalanced.set(false);
+
+        }
+        height=Math.max(leftHeight,rightHeight)+1;
+
+        return height;
     }
  
     // The main function to check if a given binary tree is height-balanced or not
